@@ -1,0 +1,1 @@
+../../../modules/solarized/emacs-colors-solarized/color-theme-solarized.el
