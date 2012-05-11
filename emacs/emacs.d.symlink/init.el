@@ -38,6 +38,8 @@
 (setq initial-scratch-message "")
 (xterm-mouse-mode 1)
 (iswitchb-mode t)
+(menu-bar-mode t)
+(tool-bar-mode -1)
 
 ;; Display settings
 (show-paren-mode t)
