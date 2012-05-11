@@ -7,3 +7,9 @@
 [submodule "emacs/emacs.d.symlink/haskell-mode"]
 	path = emacs/emacs.d.symlink/haskell-mode
 	url = https://github.com/haskell/haskell-mode.git
+[submodule "emacs/emacs.d.symlink/coffee-mode"]
+	path = emacs/emacs.d.symlink/coffee-mode
+	url = https://github.com/defunkt/coffee-mode.git
+[submodule "emacs/emacs.d.symlink/markdown-mode"]
+	path = emacs/emacs.d.symlink/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git
