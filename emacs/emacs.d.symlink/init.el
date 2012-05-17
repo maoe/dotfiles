@@ -50,7 +50,10 @@
 (setq tab-width 4)
 ;; XFS fonts and colors
 (cond (window-system
-  (set-default-font "Consolas-11")
+  (cond ((string-match "apple-darwin" system-configuration)
+         (set-default-font "Consolas-12"))
+        (t
+         (set-default-font "Consolas-11")))
   (set-fontset-font (frame-parameter nil 'font)
 		    'japanese-jisx0208
 		    '("Hiragino Kaku Gothic Pro" . "unicode-bmp"))
