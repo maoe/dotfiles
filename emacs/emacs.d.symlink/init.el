@@ -40,6 +40,8 @@
 (iswitchb-mode t)
 (menu-bar-mode t)
 (tool-bar-mode -1)
+(setq initial-frame-alist
+  (append '((width . 162) (height . 60))))
 
 ;; Display settings
 (show-paren-mode t)
