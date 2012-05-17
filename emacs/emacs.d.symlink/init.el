@@ -54,9 +54,9 @@
   (set-fontset-font (frame-parameter nil 'font)
 		    'japanese-jisx0208
 		    '("Hiragino Kaku Gothic Pro" . "unicode-bmp"))
-  (require 'color-theme)
-  (color-theme-billw)
-  ))
+  (set-foreground-color "AntiqueWhite1")
+  (set-background-color "gray18")
+  (set-cursor-color "Gray")))
 
 (require 'font-lock)
 (global-font-lock-mode t)
