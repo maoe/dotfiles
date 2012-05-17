@@ -150,6 +150,17 @@
   ;;   (lambda ()
   ;;     (interactive)
   ;;     (haskell-move-nested -1)))
+
+  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
+  (haskell-process-type 'cabal-dev)
+  (cond ((string-match "apple-darwin" system-configuration)
+         (progn (haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
+                (haskell-indent-offset 2)
+                (haskell-indent-thenelse 2)))
+        (t
+         (progn (haskell-indent-after-keywords (quote (("where" 4 0) ("of" 4) ("do" 4) ("in" 4 0) ("{" 4) "if" "then" "else" "let")))
+                (haskell-indent-offset 4)
+                (haskell-indent-thenelse 4))))
   )
 
 ;; Useful to have these keybindings for .cabal files, too.
@@ -235,14 +246,8 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
 
-  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
- '(haskell-process-type 'cabal-dev)
-
  '(coffee-tab-width 2)
  '(column-number-mode t)
- '(haskell-indent-after-keywords (quote (("where" 4 0) ("of" 4) ("do" 4) ("in" 4 0) ("{" 4) "if" "then" "else" "let")))
- '(haskell-indent-offset 4)
- '(haskell-indent-thenelse 4)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t))
