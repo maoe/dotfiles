@@ -13,3 +13,6 @@
 [submodule "emacs/emacs.d.symlink/markdown-mode"]
 	path = emacs/emacs.d.symlink/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule "modules/git-flow-completion"]
+	path = modules/git-flow-completion
+	url = https://github.com/bobthecow/git-flow-completion.git
