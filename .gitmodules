@@ -3,7 +3,7 @@
 	url = git://github.com/altercation/solarized.git
 [submodule "emacs/emacs.d.symlink/egg"]
 	path = emacs/emacs.d.symlink/egg
-	url = https://github.com/bogolisk/egg.git
+	url = https://github.com/byplayer/egg.git
 [submodule "emacs/emacs.d.symlink/haskell-mode"]
 	path = emacs/emacs.d.symlink/haskell-mode
 	url = https://github.com/haskell/haskell-mode.git
