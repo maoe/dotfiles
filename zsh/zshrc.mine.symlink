@@ -1,3 +1,9 @@
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/Users/maoe/Library/Haskell/bin
-[[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]] && source /usr/local/etc/bash_completion.d/git-completion.bash
+
+# Keep git-completion.zsh updated within 60 days old
+GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60)
+[[ -z $GIT_COMPLETION ]] && wget -O ~/.git-completion.zsh "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD"
+
+[[ -f ~/.git-completion.zsh ]] && source ~/.git-completion.zsh
 [[ -f ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh ]] && source ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh
+
