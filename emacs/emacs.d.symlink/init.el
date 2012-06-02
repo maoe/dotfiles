@@ -7,6 +7,7 @@
 (global-set-key (kbd "C-x l") 'goto-line)
 
 (setq dabbrev-case-fold-search nil)
+(add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "/Users/maoe/bin")
 (add-to-list 'exec-path "/Users/maoe/Library/Haskell/bin")
 (add-to-list 'exec-path "/home/maoe/.cabal/bin")
