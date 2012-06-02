@@ -1,0 +1,3 @@
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/Users/maoe/Library/Haskell/bin
+[[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]] && source /usr/local/etc/bash_completion.d/git-completion.bash
+[[ -f ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh ]] && source ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh
