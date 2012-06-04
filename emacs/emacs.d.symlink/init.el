@@ -158,7 +158,8 @@
   ;;     (haskell-move-nested -1)))
 
   ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
-  (haskell-process-type 'cabal-dev)
+  (custom-set-variables
+   '(haskell-process-type 'cabal-dev))
   (cond ((string-match "apple-darwin" system-configuration)
          (custom-set-variables
           '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
