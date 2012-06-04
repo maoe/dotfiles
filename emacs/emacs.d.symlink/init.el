@@ -8,9 +8,9 @@
 
 (setq dabbrev-case-fold-search nil)
 (add-to-list 'exec-path "/usr/local/bin")
-(add-to-list 'exec-path "/Users/maoe/bin")
 (add-to-list 'exec-path "/Users/maoe/Library/Haskell/bin")
-(add-to-list 'exec-path "/home/maoe/.cabal/bin")
+(add-to-list 'exec-path "~/bin")
+(add-to-list 'exec-path "~/.cabal/bin")
 
 ;; Local site-lisp and requirements
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
