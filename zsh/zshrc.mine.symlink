@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH:/Users/maoe/Library/Haskell/bin
+export PATH=$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Keep git-completion.zsh updated within 60 days old
 GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60)
