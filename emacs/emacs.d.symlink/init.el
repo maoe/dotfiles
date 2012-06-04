@@ -87,7 +87,7 @@
 (setq uniquify-buffer-name-style 'forward)
 
 ;; cua-mode
-(cua-mode t)
+(cua-selection-mode t)
 
 ;; Git integration
 (add-to-list 'load-path "~/.emacs.d/egg")
