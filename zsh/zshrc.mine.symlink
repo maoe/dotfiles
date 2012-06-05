@@ -12,8 +12,12 @@ if [ -z $DOTFILES ]; then
 fi
 
 # Keep git-completion.zsh up-to-date within 60 days old
-GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60)
-[[ -z $GIT_COMPLETION ]] && wget -O ~/.git-completion.zsh "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD"
+GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60 2>/dev/null)
+if [ -z $GIT_COMPLETION ]; then
+  echo "Updating git-completion"
+  wget -q -O ~/.git-completion.zsh "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD" >/dev/null
+  [[ $? -eq 0 ]] && clear
+fi
 
 [[ -f ~/.git-completion.zsh ]] && source ~/.git-completion.zsh
 [[ -f ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh ]] && source ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh
