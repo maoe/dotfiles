@@ -1,3 +1,4 @@
+.touch
 emacs/emacs.d.symlink/auto-install/
 emacs/emacs.d.symlink/ac-comphist.dat
 emacs/emacs.d.symlink/site-lisp/*.elc
