@@ -1,6 +1,17 @@
 export PATH=$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
-# Keep git-completion.zsh updated within 60 days old
+# Keep dotfiles repo up-to-date
+DOTFILES=$(find ~/dotfiles/.touch -mtime -1 2>/dev/null)
+if [ -z $DOTFILES ]; then
+  pushd ~/dotfiles >/dev/null
+  echo "Updating dotfiles repo"
+  git pull origin master
+  [[ $? -eq 0 ]] && clear
+  touch .touch
+  popd >/dev/null
+fi
+
+# Keep git-completion.zsh up-to-date within 60 days old
 GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60)
 [[ -z $GIT_COMPLETION ]] && wget -O ~/.git-completion.zsh "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD"
 
