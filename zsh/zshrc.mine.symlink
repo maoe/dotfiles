@@ -10,6 +10,7 @@ if [ -z $DOTFILES ]; then
   touch .touch
   popd >/dev/null
 fi
+unset DOTFILES
 
 # Keep git-completion.zsh up-to-date within 60 days old
 GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60 2>/dev/null)
@@ -18,6 +19,7 @@ if [ -z $GIT_COMPLETION ]; then
   wget -q -O ~/.git-completion.zsh "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD" >/dev/null
   [[ $? -eq 0 ]] && clear
 fi
+unset GIT_COMPLETION
 
 [[ -f ~/.git-completion.zsh ]] && source ~/.git-completion.zsh
 [[ -f ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh ]] && source ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh
