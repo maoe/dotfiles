@@ -24,3 +24,13 @@ unset GIT_COMPLETION
 [[ -f ~/.git-completion.zsh ]] && source ~/.git-completion.zsh
 [[ -f ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh ]] && source ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh
 
+hostname -f | grep tsuru >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+  export LANG=en_US.UTF-8
+  export LC_ALL=en_US.UTF-8
+  export EDITOR=/usr/bin/vim
+else
+  export LANG=ja_JP.UTF-8
+  export LC_ALL=ja_JP.UTF-8
+fi
+
