@@ -19,3 +19,6 @@
 [submodule "modules/hamlet-mode"]
 	path = modules/hamlet-mode
 	url = https://github.com/veinor/hamlet-mode.git
+[submodule "modules/popwin-el"]
+	path = modules/popwin-el
+	url = https://github.com/m2ym/popwin-el.git
