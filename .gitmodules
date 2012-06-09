@@ -4,8 +4,8 @@
 [submodule "emacs/emacs.d.symlink/egg"]
 	path = emacs/emacs.d.symlink/egg
 	url = https://github.com/byplayer/egg.git
-[submodule "emacs/emacs.d.symlink/haskell-mode"]
-	path = emacs/emacs.d.symlink/haskell-mode
+[submodule "modules/haskell-mode"]
+	path = modules/haskell-mode
 	url = https://github.com/haskell/haskell-mode.git
 [submodule "emacs/emacs.d.symlink/coffee-mode"]
 	path = emacs/emacs.d.symlink/coffee-mode
