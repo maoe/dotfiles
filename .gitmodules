@@ -1,8 +1,8 @@
 [submodule "modules/solarized"]
 	path = modules/solarized
 	url = git://github.com/altercation/solarized.git
-[submodule "emacs/emacs.d.symlink/egg"]
-	path = emacs/emacs.d.symlink/egg
+[submodule "modules/egg"]
+	path = modules/egg
 	url = https://github.com/byplayer/egg.git
 [submodule "modules/haskell-mode"]
 	path = modules/haskell-mode
