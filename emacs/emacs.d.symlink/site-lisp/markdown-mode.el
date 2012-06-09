@@ -1,1 +1,1 @@
-../markdown-mode/markdown-mode.el
+../../../modules/markdown-mode/markdown-mode.el
