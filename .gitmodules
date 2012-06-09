@@ -16,3 +16,6 @@
 [submodule "modules/git-flow-completion"]
 	path = modules/git-flow-completion
 	url = https://github.com/bobthecow/git-flow-completion.git
+[submodule "modules/hamlet-mode"]
+	path = modules/hamlet-mode
+	url = https://github.com/veinor/hamlet-mode.git

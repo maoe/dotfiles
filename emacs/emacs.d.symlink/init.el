@@ -179,6 +179,9 @@
   (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
   (define-key haskell-cabal-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch))
 
+;; Hamlet
+(require 'hamlet-mode)
+
 ;; GNU Global
 (autoload 'gtags-mode "gtags" "" t)
 
