@@ -1,1 +1,1 @@
-../coffee-mode/coffee-mode.el
+../../../modules/coffee-mode/coffee-mode.el
