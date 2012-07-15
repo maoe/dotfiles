@@ -160,16 +160,16 @@
   ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
   (custom-set-variables
    '(haskell-process-type 'cabal-dev))
-  (cond ((string-match "apple-darwin" system-configuration)
-         (custom-set-variables
-          '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
-          '(haskell-indent-offset 2)
-          '(haskell-indent-thenelse 2)))
-        (t
+  (cond ((string-match "/workspace/" buffer-file-name)
          (custom-set-variables
           '(haskell-indent-after-keywords (quote (("where" 4 0) ("of" 4) ("do" 4) ("in" 4 0) ("{" 4) "if" "then" "else" "let")))
           '(haskell-indent-offset 4)
-          '(haskell-indent-thenelse 4))))
+          '(haskell-indent-thenelse 4)))
+        (t
+         (custom-set-variables
+          '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
+          '(haskell-indent-offset 2)
+          '(haskell-indent-thenelse 2))))
   )
 
 ;; Useful to have these keybindings for .cabal files, too.
