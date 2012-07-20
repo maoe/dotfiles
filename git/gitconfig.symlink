@@ -1,0 +1,16 @@
+[user]
+    name = Mitsutoshi Aoe
+    email = maoe@foldr.in
+[color]
+    diff = auto
+    grep = auto
+    status = auto
+    branch = auto
+    interactive = auto
+[alias]
+    ci = commit
+    st = status
+    br = branch
+    co = checkout
+[include]
+    path = .gitconfig.private
