@@ -95,8 +95,6 @@
 
 ;; Haskell
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
-(add-hook 'haskell-mode-hook 'haskell-hook)
-(add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
 
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
@@ -107,70 +105,73 @@
 
   ;; Use simple indentation.
   (turn-on-haskell-indent)
-  ; (define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
-  ; (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
 
-  ;; ;; Load the current file (and make a session if not already made).
-  ;; (define-key haskell-mode-map [?\C-c ?\C-l] 'haskell-process-load-file)
-  ;; (define-key haskell-mode-map [f5] 'haskell-process-load-file)
+  ;; Load the current file (and make a session if not already made).
+  (define-key haskell-mode-map [?\C-c ?\C-l] 'haskell-process-load-file)
+  (define-key haskell-mode-map [f5] 'haskell-process-load-file)
 
-  ;; ;; Switch to the REPL.
-  ;; (define-key haskell-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch)
-  ;; ;; “Bring” the REPL, hiding all other windows apart from the source
-  ;; ;; and the REPL.
-  ;; (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+  ;; Switch to the REPL.
+  (define-key haskell-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch)
+  ;; “Bring” the REPL, hiding all other windows apart from the source
+  ;; and the REPL.
+  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
-  ;; ;; Build the Cabal project.
-  ;; (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  ;; ;; Interactively choose the Cabal command to run.
-  ;; (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+  ;; Build the Cabal project.
+  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+  ;; Interactively choose the Cabal command to run.
+  (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
 
-  ;; ;; Get the type and info of the symbol at point, print it in the
-  ;; ;; message buffer.
+  ;; Get the type and info of the symbol at point, print it in the
+  ;; message buffer.
   ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
   ;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
 
-  ;; ;; Contextually do clever things on the space key, in particular:
-  ;; ;;   1. Complete imports, letting you choose the module name.
-  ;; ;;   2. Show the type of the symbol after the space.
-  ;; (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+  ;; Contextually do clever things on the space key, in particular:
+  ;;   1. Complete imports, letting you choose the module name.
+  ;;   2. Show the type of the symbol after the space.
+  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
 
-  ;; ;; Jump to the imports. Keep tapping to jump between import
-  ;; ;; groups. C-u f8 to jump back again.
-  ;; (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
+  ;; Jump to the imports. Keep tapping to jump between import
+  ;; groups. C-u f8 to jump back again.
+  (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
 
-  ;; ;; Jump to the definition of the current symbol.
-  ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
+  ;; Jump to the definition of the current symbol.
+  (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
 
-  ;; ;; Save the current buffer and generate etags (a TAGS file) for the
-  ;; ;; whole project.
-  ;; (define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer-and-tags)
+  ;; Save the current buffer and generate etags (a TAGS file) for the
+  ;; whole project.
+  (define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
 
-  ;; ;; Indent the below lines on columns after the current column.
-  ;; (define-key haskell-mode-map (kbd "C-<right>")
-  ;;   (lambda ()
-  ;;     (interactive)
-  ;;     (haskell-move-nested 1)))
-  ;; ;; Same as above but backwards.
-  ;; (define-key haskell-mode-map (kbd "C-<left>")
-  ;;   (lambda ()
-  ;;     (interactive)
-  ;;     (haskell-move-nested -1)))
+  ;; Indent the below lines on columns after the current column.
+  (define-key haskell-mode-map (kbd "C-<right>")
+    (lambda ()
+      (interactive)
+      (haskell-move-nested 1)))
+  ;; Same as above but backwards.
+  (define-key haskell-mode-map (kbd "C-<left>")
+    (lambda ()
+      (interactive)
+      (haskell-move-nested -1)))
 
-  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
-  (custom-set-variables
-   '(haskell-process-type 'cabal-dev))
-  (cond ((string-match "/workspace/" buffer-file-name)
-         (custom-set-variables
-          '(haskell-indent-after-keywords (quote (("where" 4 0) ("of" 4) ("do" 4) ("in" 4 0) ("{" 4) "if" "then" "else" "let")))
-          '(haskell-indent-offset 4)
-          '(haskell-indent-thenelse 4)))
-        (t
-         (custom-set-variables
-          '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
-          '(haskell-indent-offset 2)
-          '(haskell-indent-thenelse 2))))
+  (cond
+   ((string-match "/workspace/" buffer-file-name)
+    (custom-set-variables
+     '(haskell-indent-after-keywords (quote (("where" 4 0) ("of" 4) ("do" 4) ("in" 4 0) ("{" 4) "if" "then" "else" "let")))
+     '(haskell-indent-offset 4)
+     '(haskell-indent-thenelse 4)))
+   (t
+    (custom-set-variables
+     '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
+     '(haskell-indent-offset 2)
+     '(haskell-indent-thenelse 2))))
   )
+
+;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
+(custom-set-variables
+ '(haskell-notify-p t)
+ '(haskell-process-path-cabal-dev "~/.cabal/bin/cabal-dev")
+ '(haskell-process-type (quote cabal-dev))
+ '(haskell-tags-on-save t))
 
 ;; Useful to have these keybindings for .cabal files, too.
 (defun haskell-cabal-hook ()
@@ -178,6 +179,9 @@
   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
   (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
   (define-key haskell-cabal-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch))
+
+(add-hook 'haskell-mode-hook 'haskell-hook)
+(add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
 
 ;; Hamlet
 (require 'hamlet-mode)
