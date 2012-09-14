@@ -11,6 +11,7 @@
 (add-to-list 'exec-path "/Users/maoe/Library/Haskell/bin")
 (add-to-list 'exec-path "~/bin")
 (add-to-list 'exec-path "~/.cabal/bin")
+(add-to-list 'exec-path "/usr/local/ghc/ghc-7.4.2/bin")
 
 ;; Local site-lisp and requirements
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
