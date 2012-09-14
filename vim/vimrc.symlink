@@ -85,3 +85,13 @@ function! StripWhitespace ()
 endfunction
 map ,s :call StripWhitespace ()<CR>
 
+" ---------------------------------------------------------------------------
+" Edit gpg-encrypted ascii-armoured files
+" ---------------------------------------------------------------------------
+autocmd! BufReadPre,FileReadPre      *.asc  set bin
+autocmd  BufReadPost,FileReadPost    *.asc  '[,']!gpg -q -d
+autocmd  BufReadPost,FileReadPost    *.asc  set nobin
+autocmd! BufWritePre,FileWritePre    *.asc  set bin
+autocmd  BufWritePre,FileWritePre    *.asc  '[,']!gpg -e
+autocmd  BufWritePost,FileWritePost  *.asc  undo
+autocmd  BufWritePost,FileWritePost  *.asc  set nobin
