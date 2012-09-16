@@ -7,6 +7,14 @@
 (global-set-key (kbd "C-x l") 'goto-line)
 
 (setq dabbrev-case-fold-search nil)
+
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell 
+      (replace-regexp-in-string "[[:space:]\n]*$" "" 
+        (shell-command-to-string "$SHELL -l -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+(set-exec-path-from-shell-PATH)
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path "/Users/maoe/Library/Haskell/bin")
 (add-to-list 'exec-path "~/bin")
