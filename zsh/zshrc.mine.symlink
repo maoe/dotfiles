@@ -34,3 +34,12 @@ else
   export LC_ALL=ja_JP.UTF-8
 fi
 
+case "${OSTYPE}" in
+darwin*)
+  [ -f $HOME/.zshrc.mac ] && . $HOME/.zshrc.mac
+  ;;
+linux*)
+  [ -f $HOME/.zshrc.linux ] && . $HOME/.zshrc.linux
+  ;;
+esac
+
