@@ -273,6 +273,7 @@
 
  '(coffee-tab-width 2)
  '(column-number-mode t)
+ '(epa-file-name-regexp "\\.\\(asc\\|gpg\\)\\(~\\|\\.~[0-9]+~\\)?\\'")
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t))
