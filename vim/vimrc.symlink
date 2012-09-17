@@ -95,3 +95,11 @@ autocmd! BufWritePre,FileWritePre    *.asc  set bin
 autocmd  BufWritePre,FileWritePre    *.asc  '[,']!gpg -e
 autocmd  BufWritePost,FileWritePost  *.asc  undo
 autocmd  BufWritePost,FileWritePost  *.asc  set nobin
+
+autocmd! BufReadPre,FileReadPre      *.gpg  set bin
+autocmd  BufReadPost,FileReadPost    *.gpg  '[,']!gpg -q -d
+autocmd  BufReadPost,FileReadPost    *.gpg  set nobin
+autocmd! BufWritePre,FileWritePre    *.gpg  set bin
+autocmd  BufWritePre,FileWritePre    *.gpg  '[,']!gpg -e
+autocmd  BufWritePost,FileWritePost  *.gpg  undo
+autocmd  BufWritePost,FileWritePost  *.gpg  set nobin
