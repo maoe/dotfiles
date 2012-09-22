@@ -173,14 +173,13 @@
      '(haskell-indent-after-keywords (quote (("where" 2 0) ("of" 2) ("do" 2) ("in" 2 0) ("{" 2) "if" "then" "else" "let")))
      '(haskell-indent-offset 2)
      '(haskell-indent-thenelse 2))))
+  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
+  (custom-set-variables
+    '(haskell-notify-p t)
+    '(haskell-process-path-cabal-dev "~/.cabal/bin/cabal-dev")
+    '(haskell-process-type (quote cabal-dev))
+    '(haskell-tags-on-save t))
   )
-
-;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
-(custom-set-variables
- '(haskell-notify-p t)
- '(haskell-process-path-cabal-dev "~/.cabal/bin/cabal-dev")
- '(haskell-process-type (quote cabal-dev))
- '(haskell-tags-on-save t))
 
 ;; Useful to have these keybindings for .cabal files, too.
 (defun haskell-cabal-hook ()
