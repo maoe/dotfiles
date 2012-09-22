@@ -271,12 +271,16 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
 
+ '(browse-url-browser-function (quote browse-url-generic))
+ '(browse-url-generic-program "google-chrome")
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(epa-file-name-regexp "\\.\\(asc\\|gpg\\)\\(~\\|\\.~[0-9]+~\\)?\\'")
+ '(markdown-css-path "/home/maoe/.emacs.d/github.css")
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t))
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
