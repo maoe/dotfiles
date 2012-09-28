@@ -87,7 +87,11 @@
 ;;
 ;; Package configurations
 ;;
-(require 'anything-startup)
+;; Helm (was anything)
+(add-to-list 'load-path "~/.emacs.d/helm")
+(require 'helm-config)
+(helm-mode 1)
+(global-set-key (kbd "C-x b") 'helm-buffers-list)
 
 ;; popwin.el
 (require 'popwin)
