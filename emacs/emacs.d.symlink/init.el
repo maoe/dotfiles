@@ -15,11 +15,16 @@
     (setenv "PATH" path-from-shell)
     (setq exec-path (split-string path-from-shell path-separator))))
 (set-exec-path-from-shell-PATH)
-(add-to-list 'exec-path "/usr/local/bin")
-(add-to-list 'exec-path "/Users/maoe/Library/Haskell/bin")
-(add-to-list 'exec-path "~/bin")
-(add-to-list 'exec-path "~/.cabal/bin")
-(add-to-list 'exec-path "/usr/local/ghc/ghc-7.4.2/bin")
+
+(defun preghc ()
+  (let* ((ghc-version (read-from-minibuffer "preghc: " ""))
+         (preghc (concat "preghc " ghc-version " 2>/dev/null"))
+         (path-from-shell
+          (replace-regexp-in-string "[[:space:]\n]*$" ""
+           (shell-command-to-string
+            (format "$SHELL --login -c 'source ~/.zshrc; %s; echo $PATH'" preghc)))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
 
 ;; Local site-lisp and requirements
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
@@ -111,6 +116,8 @@
 
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
+  (preghc)
+
   ;; ghc-mod
   (autoload 'ghc-init "ghc" nil t)
   (ghc-init)
