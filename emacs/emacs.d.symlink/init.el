@@ -105,6 +105,7 @@
 ;; Git integration
 (add-to-list 'load-path "~/.emacs.d/egg")
 (require 'egg)
+(load "~/.emacs.d/egg/egg-grep")
 
 ;; Haskell
 (load "~/.emacs.d/haskell-mode/haskell-site-file")
