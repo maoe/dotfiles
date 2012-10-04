@@ -75,7 +75,7 @@ preghc() {
             *)     els="$els $el";;
         esac
     done
-    PATH=$(echo $els | sed -e 's/  */:/g')
+    PATH=$(echo $els | sed -e 's/ /:/g' | sed -e 's/^://')
     echo 1>&2 $(dirname $binpath)
     prepath $binpath
 }
