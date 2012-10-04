@@ -18,7 +18,7 @@ unset DOTFILES
 GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60 2>/dev/null)
 if [ -z $GIT_COMPLETION ]; then
   echo "Updating git-completion"
-  wget -q -O ~/.git-completion.zsh "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD" >/dev/null
+  curl "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD" > ~/.git-completion.zsh 2>/dev/null
   [[ $? -eq 0 ]] && clear
 fi
 unset GIT_COMPLETION
