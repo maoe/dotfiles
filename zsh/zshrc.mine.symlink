@@ -1,7 +1,3 @@
-export PATH=$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-unset LANGUAGE
-export LC_ALL=en
-
 # Keep dotfiles repo up-to-date
 DOTFILES=$(find ~/dotfiles/.touch -mtime -7 2>/dev/null)
 if [ -z $DOTFILES ]; then
@@ -18,7 +14,7 @@ unset DOTFILES
 GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60 2>/dev/null)
 if [ -z $GIT_COMPLETION ]; then
   echo "Updating git-completion"
-  wget -q -O ~/.git-completion.zsh "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD" >/dev/null
+  curl "http://zsh.git.sourceforge.net/git/gitweb.cgi?p=zsh/zsh;a=blob_plain;f=Completion/Unix/Command/_git;hb=HEAD" > ~/.git-completion.zsh 2>/dev/null
   [[ $? -eq 0 ]] && clear
 fi
 unset GIT_COMPLETION
@@ -79,7 +75,7 @@ preghc() {
             *)     els="$els $el";;
         esac
     done
-    PATH=$(echo $els | sed -e 's/  */:/g')
+    PATH=$(echo $els | sed -e 's/ /:/g' | sed -e 's/^://')
     echo 1>&2 $(dirname $binpath)
     prepath $binpath
 }

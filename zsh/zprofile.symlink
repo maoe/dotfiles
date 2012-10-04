@@ -1,0 +1,3 @@
+export PATH=$HOME/.cabal/bin:$HOME/bin:$PATH
+unset LANGUAGE
+export LC_ALL=en
