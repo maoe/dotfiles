@@ -2,3 +2,15 @@ if [ -f `brew --prefix`/etc/autojump ]; then
   . `brew --prefix`/etc/autojump
 fi
 fpath=(/usr/local/share/zsh-completions $fpath)
+
+# JavaScript
+npm_bindir=/usr/local/share/npm/bin
+if echo ":$PATH:" | grep -q ":$dir:"; then
+    :
+else
+    PATH="$npm_bindir:$PATH"
+fi
+export PATH
+
+# Ruby
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

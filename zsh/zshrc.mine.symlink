@@ -72,7 +72,7 @@ preghc() {
     for el in $(echo "$PATH" | sed -e 's/:/ /g'); do
         case "$el" in
             *ghc*) : ;;
-            *)     els="$els $el";;
+            *) els="$els $el";;
         esac
     done
     PATH=$(echo $els | sed -e 's/ /:/g' | sed -e 's/^://')
