@@ -66,7 +66,7 @@
 ;; XFS fonts and colors
 (cond (window-system
   (cond ((string-match "apple-darwin" system-configuration)
-         (set-default-font "Consolas-12"))
+         (set-default-font "Monaco-11"))
         (t
          (set-default-font "Consolas-11")))
   (set-fontset-font (frame-parameter nil 'font)
