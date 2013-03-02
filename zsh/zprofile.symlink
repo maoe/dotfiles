@@ -1,3 +1,5 @@
 export PATH=$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:$PATH
-unset LANGUAGE
-export LC_ALL=en
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export EDITOR=/usr/bin/vim
