@@ -1,0 +1,6 @@
+source $HOME/dotfiles/modules/antigen/antigen.zsh
+
+antigen-lib
+antigen-bundle git
+antigen-theme kphoen
+antigen-apply
