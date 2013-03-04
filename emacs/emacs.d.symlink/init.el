@@ -153,9 +153,6 @@
 
 (add-hook 'haskell-mode-hook 'haskell-hook)
 
-;; Hamlet
-(require 'hamlet-mode)
-
 ;; GNU Global
 (autoload 'gtags-mode "gtags" "" t)
 
