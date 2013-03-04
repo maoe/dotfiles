@@ -22,3 +22,6 @@
 [submodule "modules/antigen"]
 	path = modules/antigen
 	url = https://github.com/zsh-users/antigen.git
+[submodule "modules/helm"]
+	path = modules/helm
+	url = https://github.com/emacs-helm/helm.git
