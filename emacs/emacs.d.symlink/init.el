@@ -191,6 +191,10 @@
 
 (add-hook 'coffee-mode-hook 'flymake-coffeescript-load)
 
+;; YAML
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
 ;; auto-complete.el
 (when (require 'auto-complete nil t)
   (require 'auto-complete-config)

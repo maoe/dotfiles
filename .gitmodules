@@ -25,3 +25,6 @@
 [submodule "modules/helm"]
 	path = modules/helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule "modules/yaml-mode"]
+	path = modules/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode.git
