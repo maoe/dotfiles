@@ -16,3 +16,5 @@
     path = .gitconfig.private
 [push]
 	default = tracking
+[rerere]
+	enabled = true
