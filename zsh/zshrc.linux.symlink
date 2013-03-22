@@ -1,4 +1,4 @@
 # autojump needs to be installed
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
-prepath "$HOME/.rbenv/bin"
+[[ -d $HOME/.rbenv/bin ]] && prepath "$HOME/.rbenv/bin"
