@@ -38,7 +38,7 @@ prepath() {
     fi
     dir=$(cd $1; /bin/pwd)
     if echo ":$PATH:" | grep -q ":$dir:"; then
-        echo 1>&2 "$dir already in path."
+        :
     else
         PATH="$dir:$PATH"
     fi
