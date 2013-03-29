@@ -28,3 +28,6 @@
 [submodule "modules/yaml-mode"]
 	path = modules/yaml-mode
 	url = https://github.com/yoshiki/yaml-mode.git
+[submodule "modules/handlebars-mode"]
+	path = modules/handlebars-mode
+	url = https://github.com/danielevans/handlebars-mode.git
