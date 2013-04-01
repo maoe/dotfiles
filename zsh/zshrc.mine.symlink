@@ -45,19 +45,19 @@ prepath() {
 }
 
 preghc() {
-    local binpaths
+    local binpath
     for i in /usr/local/ghc/ghc-$1*/bin/ghc; do
         if ! [ -x $i ]; then
             echo 1>&2 "Not found or not executable: $i"
             return 1
         fi
-        if [ -z $binpaths ]; then
-            binpaths="$(dirname $i)"
-        else
-            binpaths="$binpaths\n$(dirname $i)"
+        local dir=$(dirname $i)
+        echo $dir | grep HEAD >/dev/null 2>&1
+        if [ $? -eq 0 ] && [ -z "$1" ]; then
+            continue
         fi
+        binpath="$dir"
     done
-    binpath=$(echo -e $binpaths | tail -n 1)
     els=""
     for el in $(echo "$PATH" | sed -e 's/:/ /g'); do
         case "$el" in
