@@ -160,6 +160,10 @@
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$|\\.julius$" . js2-mode))
 
+;; Handlebars.js
+(require 'handlebars-mode)
+(add-to-list 'auto-mode-alist '("\\.hbs$|\\.handlebars$" . handlebars-mode))
+
 ;; CoffeeScript
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
@@ -228,11 +232,11 @@
    (cons '("\\.markdown$\\|\\.mkdn$\\|\\.md$" . markdown-mode) auto-mode-alist))
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(agda2-include-dirs (quote ("." "/home/maoe/src/agda-frp-ltl/lib-0.7/src")))
  '(browse-url-browser-function (quote browse-url-generic))
  '(coffee-tab-width 2)
  '(column-number-mode t)
@@ -243,8 +247,11 @@
  '(size-indication-mode t))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
+
+(load-file (let ((coding-system-for-read 'utf-8))
+                (shell-command-to-string "agda-mode locate")))
