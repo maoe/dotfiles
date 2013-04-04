@@ -153,6 +153,11 @@
 
 (add-hook 'haskell-mode-hook 'haskell-hook)
 
+;; Coq (Proof General)
+(cond (window-system
+  (cond ((string-match "apple-darwin" system-configuration)
+         (load-file "/usr/local/share/emacs/site-lisp/ProofGeneral/generic/proof-site.el")))))
+
 ;; GNU Global
 (autoload 'gtags-mode "gtags" "" t)
 
