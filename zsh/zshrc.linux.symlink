@@ -1,2 +1,4 @@
 # autojump needs to be installed
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
+
+setopt NO_BG_NICE
