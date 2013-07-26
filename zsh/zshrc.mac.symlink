@@ -1,6 +1,5 @@
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
-fi
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # JavaScript
