@@ -13,3 +13,23 @@ export PATH
 
 # Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# CUDA
+enable_cuda() {
+    cuda_bindir=/usr/local/cuda/bin
+    cuda_libdir=/usr/local/cuda/lib
+
+    if echo ":$PATH:" | grep -q ":$cuda_bindir:"; then
+        :
+    else
+        PATH=$cuda_bindir:$PATH
+    fi
+    export PATH
+
+    if echo ":$DYLD_LIBRARY_PATH:" | grep -q ":$cuda_libdir:"; then
+        :
+    else
+        DYLD_LIBRARY_PATH=$cuda_libdir:$DYLD_LIBRARY_PATH
+    fi
+    export DYLD_LIBRARY_PATH
+}
