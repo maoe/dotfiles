@@ -4,7 +4,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # JavaScript
 npm_bindir=/usr/local/share/npm/bin
-if echo ":$PATH:" | grep -q ":$dir:"; then
+if echo ":$PATH:" | grep -q ":$npm_bindir:"; then
     :
 else
     PATH="$npm_bindir:$PATH"
