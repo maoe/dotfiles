@@ -22,15 +22,6 @@ unset GIT_COMPLETION
 [[ -f ~/.git-completion.zsh ]] && source ~/.git-completion.zsh
 [[ -f ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh ]] && source ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh
 
-case "${OSTYPE}" in
-darwin*)
-  [ -f $HOME/.zshrc.mac ] && . $HOME/.zshrc.mac
-  ;;
-linux*)
-  [ -f $HOME/.zshrc.linux ] && . $HOME/.zshrc.linux
-  ;;
-esac
-
 prepath() {
     if [ ! -d "$1" ]; then
         echo 1>&2 "$1 is not a directory."
@@ -78,3 +69,12 @@ alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
 
 source $HOME/.zshrc.antigen
+
+case "${OSTYPE}" in
+darwin*)
+  [ -f $HOME/.zshrc.mac ] && . $HOME/.zshrc.mac
+  ;;
+linux*)
+  [ -f $HOME/.zshrc.linux ] && . $HOME/.zshrc.linux
+  ;;
+esac
