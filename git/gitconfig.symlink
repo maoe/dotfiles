@@ -18,3 +18,5 @@
 	default = tracking
 [rerere]
 	enabled = true
+[core]
+	excludesfile = /home/maoe/.gitignore
