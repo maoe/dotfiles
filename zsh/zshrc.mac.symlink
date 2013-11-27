@@ -1,11 +1,10 @@
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
-fi
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # JavaScript
 npm_bindir=/usr/local/share/npm/bin
-if echo ":$PATH:" | grep -q ":$dir:"; then
+if echo ":$PATH:" | grep -q ":$npm_bindir:"; then
     :
 else
     PATH="$npm_bindir:$PATH"
@@ -14,3 +13,23 @@ export PATH
 
 # Ruby
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# CUDA
+enable_cuda() {
+    cuda_bindir=/usr/local/cuda/bin
+    cuda_libdir=/usr/local/cuda/lib
+
+    if echo ":$PATH:" | grep -q ":$cuda_bindir:"; then
+        :
+    else
+        PATH=$cuda_bindir:$PATH
+    fi
+    export PATH
+
+    if echo ":$DYLD_LIBRARY_PATH:" | grep -q ":$cuda_libdir:"; then
+        :
+    else
+        DYLD_LIBRARY_PATH=$cuda_libdir:$DYLD_LIBRARY_PATH
+    fi
+    export DYLD_LIBRARY_PATH
+}
