@@ -13,6 +13,7 @@
     st = status
     br = branch
     co = checkout
+    pb = publish-branch
 [include]
     path = .gitconfig.private
 [push]
