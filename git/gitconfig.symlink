@@ -7,6 +7,7 @@
     status = auto
     branch = auto
     interactive = auto
+    diff-tree = auto
 [alias]
     ci = commit
     st = status
@@ -20,3 +21,7 @@
 	enabled = true
 [core]
 	excludesfile = /home/maoe/.gitignore
+[pager]
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
