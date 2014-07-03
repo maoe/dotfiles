@@ -33,6 +33,10 @@ setopt noautoremoveslash
 #
 setopt nolistbeep
 
+# comments begin with a #
+#
+setopt interactivecomments
+
 ## Keybind configuration
 #
 # emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes 
