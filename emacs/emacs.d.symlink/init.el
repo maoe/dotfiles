@@ -90,6 +90,12 @@
 ;;
 ;; Package configurations
 ;;
+;; Melpa
+(require 'package)
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
 ;; Helm (was anything)
 (add-to-list 'load-path "~/.emacs.d/helm")
 (require 'helm-config)
