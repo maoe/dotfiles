@@ -1,0 +1,4 @@
+:set -isrc/trader/src
+:set +t
+:set prompt "\ESC[36m\955:%l> \ESC[m"
+:set prompt2 "\ESC[36m\955:%l| \ESC[m"
