@@ -1,3 +1,5 @@
+set-option -g default-command "which reattach-to-user-namespace > /dev/null && reattach-to-user-namespace -l $SHELL || $SHELL"
+
 # UTF-8 setting
 set-window-option -g utf8 on
 set-window-option -g mode-keys vi
