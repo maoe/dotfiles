@@ -68,7 +68,7 @@ alias dstat-cpu='dstat -Tclr'
 alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
 alias knife='nocorrect knife'
-alias cabal='nocorrect cabal'
+alias cabal='nocorrect ~/.cabal/bin/cabal'
 
 source $HOME/.zshrc.antigen
 
