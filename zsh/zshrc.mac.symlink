@@ -33,3 +33,5 @@ enable_cuda() {
     fi
     export DYLD_LIBRARY_PATH
 }
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/X11/lib/pkgconfig:$PKG_CONFIG_PATH
