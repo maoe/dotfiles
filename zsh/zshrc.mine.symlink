@@ -71,6 +71,7 @@ alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
 alias knife='nocorrect knife'
 alias cabal='nocorrect ~/.cabal/bin/cabal'
+alias c2hs='nocorrect ~/.cabal/bin/c2hs'
 
 source $HOME/.zshrc.antigen
 
