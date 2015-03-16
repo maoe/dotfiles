@@ -1,0 +1,8 @@
+set commit-order = topo
+set blame-options = -C -C -C
+set show-author = abbreviated
+set author-width = 8
+set show-id = true
+
+bind main    R !git rebase -i %(commit)
+bind diff    R !git rebase -i %(commit)
