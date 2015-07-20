@@ -41,4 +41,8 @@
 [url "git@github.com:/ghc/packages-"]
 	insteadOf = git@github.com:/ghc/packages/
 [ghq]
-    root = ~/src
+	root = ~/src
+[ghq "http://hub.darcs.net/"]
+    vcs = darcs
+[ghq "http://code.haskell.org/"]
+    vcs = darcs
