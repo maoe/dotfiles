@@ -39,7 +39,9 @@ prepath() {
 
 preghc() {
     local binpath
-    for i in `ls /usr/local/ghc/ghc-$1*/bin/ghc | gsort -V`; do
+    local gnusort
+    type gsort >/dev/null 2>&1 && gnusort=gsort || gnusort=sort
+    for i in `ls /usr/local/ghc/ghc-$1*/bin/ghc | $gnusort -V`; do
         if ! [ -x $i ]; then
             echo 1>&2 "Not found or not executable: $i"
             return 1
