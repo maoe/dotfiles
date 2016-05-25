@@ -139,3 +139,5 @@ esac
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 [ -f ~/.zshrc.private ] && source ~/.zshrc.private || true
 
+zsh_syntax_highlighting=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f "$zsh_syntax_highlighting" ] && source "$zsh_syntax_highlighting"
