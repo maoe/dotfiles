@@ -19,6 +19,8 @@
     path = .gitconfig.private
 [push]
 	default = tracking
+[tag]
+    sort = version:refname
 [rerere]
 	enabled = true
 [core]
