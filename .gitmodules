@@ -1,12 +1,6 @@
-[submodule "modules/solarized"]
-	path = modules/solarized
-	url = git://github.com/altercation/solarized.git
 [submodule "modules/git-flow-completion"]
 	path = modules/git-flow-completion
 	url = https://github.com/bobthecow/git-flow-completion.git
-[submodule "modules/popwin-el"]
-	path = modules/popwin-el
-	url = https://github.com/m2ym/popwin-el.git
 [submodule "modules/antigen"]
 	path = modules/antigen
 	url = https://github.com/zsh-users/antigen.git
