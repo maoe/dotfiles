@@ -49,3 +49,5 @@
     vcs = darcs
 [ghq "http://code.haskell.org/"]
     vcs = darcs
+[commit]
+    verbose = true
