@@ -2,7 +2,8 @@ export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:/usr/loca
 export EDITOR=vim
 
 # Rust
-[[ -d "$HOME/.cargo/bin" ]] && PATH=$HOME/.cargo/bin:$PATH
+CARGO="$HOME/.cargo/bin"
+[[ -d "$CARGO" ]] && export PATH=$CARGO:$PATH
 
 # Keep dotfiles repo up-to-date
 DOTFILES=$(find ~/dotfiles/.touch -mtime -7 2>/dev/null)
