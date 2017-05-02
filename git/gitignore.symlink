@@ -11,3 +11,4 @@
 *.sw[po]
 tags
 Thumbs.db
+dist-newstyle/
