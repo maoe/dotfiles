@@ -8,6 +8,7 @@ type rake || echo "You need rake to proceed"
 if [ -d "$DOTFILES_DIR" ]; then
   cd $DOTFILES_DIR
   git pull
+  git submodule update -i
 else
   git clone --recursive https://github.com/maoe/dotfiles.git $DOTFILES_DIR
 fi
