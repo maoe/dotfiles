@@ -103,3 +103,13 @@ autocmd! BufWritePre,FileWritePre    *.gpg  set bin
 autocmd  BufWritePre,FileWritePre    *.gpg  '[,']!gpg -e
 autocmd  BufWritePost,FileWritePost  *.gpg  undo
 autocmd  BufWritePost,FileWritePost  *.gpg  set nobin
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = ""
+  if &diffopt =~ "iwhite"
+    let opt = opt . "-b "
+  endif
+  silent execute "!git-diff-normal-format " . opt . v:fname_in . " " . v:fname_new . " > " . v:fname_out
+  redraw!
+endfunction

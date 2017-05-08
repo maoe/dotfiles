@@ -16,6 +16,9 @@ if [ -z $DOTFILES ]; then
   echo "Updating dotfiles repo"
   git pull origin master
   [[ $? -eq 0 ]] && clear
+  echo "Updating dotfiles submodules"
+  git submodule update -i
+  [[ $? -eq 0 ]] && clear
   touch .touch
   popd >/dev/null
 fi
