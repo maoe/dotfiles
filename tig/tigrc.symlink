@@ -1,6 +1,7 @@
 set commit-order = topo
 set blame-options = -C -C -C
-set blame-view  = date:default author:abbreviated file-name:auto id:yes,color line-number:yes text
+# set blame-view  = date:default author:abbreviated file-name:auto id:yes,color line-number:yes text
+set blame-view  = date:default author:abbreviated file-name:auto id:yes,color text
 set grep-view = file-name:no line-number:yes,interval=1 text
 set main-view = line-number:no,interval=5 id:yes date:default author:abbreviated commit-title:yes,graph,refs,overflow=no
 set refs-view = line-number:no id:no date:default author:abbreviated ref commit-title
