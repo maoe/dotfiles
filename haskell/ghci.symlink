@@ -1,4 +1,4 @@
 :set -isrc/trader/src
 :set +t
-:set prompt "\955> "
-:set prompt2 "\955| "
+:set prompt      "\955> "
+:set prompt-cont "\955| "
