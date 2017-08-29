@@ -1,6 +1,10 @@
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export EDITOR=vim
 
+# Entware-ng
+ENTWARE_PROFILE="/opt/etc/profile"
+[[ -f "$ENTWARE_PROFILE" ]] && source "$ENTWARE_PROFILE"
+
 # Rust
 CARGO="$HOME/.cargo/bin"
 [[ -d "$CARGO" ]] && export PATH=$CARGO:$PATH
