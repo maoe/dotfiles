@@ -4,6 +4,3 @@
 [submodule "modules/antigen"]
 	path = modules/antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule "modules/handlebars-mode"]
-	path = modules/handlebars-mode
-	url = https://github.com/danielevans/handlebars-mode.git
