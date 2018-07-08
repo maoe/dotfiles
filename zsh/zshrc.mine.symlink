@@ -1,4 +1,4 @@
-export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.cabal/bin:/opt/ghc/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export EDITOR=vim
 
 # Entware-ng
