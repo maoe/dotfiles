@@ -8,11 +8,12 @@
 .*.rej
 .*~
 .DS_Store
+._*.rs.*
 .ghc.environment.*
 .stack-work/
 Thumbs.db
 \#*#
+cabal.project.local*
 dist-newstyle/
 dist/
 tags
-cabal.project.local*
