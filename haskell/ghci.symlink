@@ -2,3 +2,4 @@
 :set +t
 :set prompt      "\955> "
 :set prompt-cont "\955| "
+:cmd return $ if Data.Version.versionBranch System.Info.compilerVersion >= [8,6] then ":seti -XNumericUnderscores" else ""
