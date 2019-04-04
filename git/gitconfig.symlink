@@ -1,6 +1,6 @@
 [user]
     name = Mitsutoshi Aoe
-    email = maoe@foldr.in
+    email = me@maoe.name
 [color]
     diff = auto
     grep = auto
@@ -25,7 +25,7 @@
 [rerere]
 	enabled = true
 [core]
-	excludesfile = /home/maoe/.gitignore
+	excludesfile = ~/.gitignore
 [pager]
     log = "if $(type -p diff-highlight >/dev/null 2>&1); then diff-highlight | less; else less; fi"
     show = "if $(type -p diff-highlight >/dev/null 2>&1); then diff-highlight | less; else less; fi"
