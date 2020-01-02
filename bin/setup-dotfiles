@@ -1,5 +1,6 @@
 #!/bin/sh
-DOTFILES_DIR=$HOME/dotfiles
+DOTFILES_DIR=$(ssh $@ 'echo $HOME')
+echo "DOTFILES_DIR=$DOTFILES_DIR"
 
 ssh $@ <<EOF
 type git || echo "You need git to proceed"

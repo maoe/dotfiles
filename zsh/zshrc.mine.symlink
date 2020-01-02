@@ -1,18 +1,3 @@
-export PATH=$HOME/.local/bin:$HOME/.cabal/bin:/opt/ghc/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-export EDITOR=vim
-
-# Entware-ng
-ENTWARE_PROFILE="/opt/etc/profile"
-[[ -f "$ENTWARE_PROFILE" ]] && source "$ENTWARE_PROFILE"
-
-# Rust
-CARGO="$HOME/.cargo/bin"
-[[ -d "$CARGO" ]] && export PATH=$CARGO:$PATH
-
-# Phab
-ARC="$HOME/src/github.com/phacility/arcanist/bin"
-[[ -d "$ARC" ]] && export PATH=$ARC:$PATH
-
 # Keep dotfiles repo up-to-date
 DOTFILES=$(find ~/dotfiles/.touch -mtime -7 2>/dev/null)
 if [ -z $DOTFILES ]; then
@@ -88,7 +73,6 @@ alias dstat-cpu='dstat -Tclr'
 alias dstat-net='dstat -Tclnd'
 alias dstat-disk='dstat -Tcldr'
 alias knife='nocorrect knife'
-alias cabal='nocorrect ~/.local/bin/cabal'
 
 source $HOME/.zshrc.antigen
 
@@ -144,3 +128,20 @@ export GPG_TTY=$(tty)
 
 # added by travis gem
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+
+# direnv
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+
+# autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+export EDITOR=vim
+
+# Haskell
+source $HOME/.ghcup/env
+export PATH=$HOME/.local/bin:/opt/ghc/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
+
+# Rust
+CARGO="$HOME/.cargo/bin"
+[[ -d "$CARGO" ]] && export PATH=$CARGO:$PATH
+

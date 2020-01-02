@@ -15,10 +15,8 @@ export PATH
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Python
-if which pyenv > /dev/null; then
-  export PATH="$HOME/.pyenv/bin:$PATH"
-  eval "$(pyenv init -)"
-fi
+python_bindir="$HOME/Library/Python/3.7/bin"
+[[ -d "$python_bindir" ]] && export PATH="$python_bindir:$PATH"
 
 # CUDA
 enable_cuda() {
@@ -45,3 +43,6 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/X11/lib/pkgconfig:$PKG_CONF
 eval `/usr/libexec/path_helper -s`
 
 export ATOM_PATH=~/Applications
+
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export HOMEBREW_INSTALL_CLEANUP=1

@@ -15,6 +15,7 @@
     co = checkout
     pb = publish-branch
     base = describe --tags --abbrev=0
+	force-push = push --force-with-lease
 [include]
     path = .gitconfig.private
 [push]
@@ -55,3 +56,8 @@
     vcs = darcs
 [commit]
     verbose = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
