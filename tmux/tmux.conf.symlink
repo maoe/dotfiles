@@ -8,46 +8,25 @@ set-window-option -g automatic-rename off
 # set -g status-fg black
 
 set -s escape-time 0
-setw -g window-status-current-attr underscore
 
 # 256-colors terminal
 set-option -g default-terminal "screen-256color"
 
 # Status line
-set -g status-bg black
-set -g status-fg white
-set -g status-attr dim
-# 左部:whoami@hostname
-# set -g status-left '#[fg=blue,bold][#20(whoami) No.#I-#P]#[default]'
-# set -g status-left-length 20
-# 右部:[2011/03/06(Sun)20:21]
-set -g status-right '#[fg=blue,bold][%Y/%m/%d(%a)%H:%M]#[default]'
-set -g message-attr bold
-set -g message-fg white
-set -g message-bg red
+set -g status-style bg=black,fg=white,dim
+set -g status-right ''
+set -g message-style bold,fg=white,bg=red
 
-set -g pane-active-border-fg white
-set -g pane-active-border-bg black
+set -g pane-active-border-style fg=white,bg=black
 
-set-window-option -g mode-bg white
-set-window-option -g mode-fg black
-set-window-option -g window-status-bg black
-set-window-option -g window-status-fg white
-set-window-option -g window-status-current-bg magenta
-set-window-option -g window-status-current-fg black
-set-window-option -g window-status-current-attr bold
+set-window-option -g mode-style bg=white,fg=black
+set-window-option -g window-status-style bg=black,fg=white
+set-window-option -g window-status-current-style underscore,bg=magenta,fg=black,bold
 
 # Set the prefix to ^T.
 unbind C-b
 set -g prefix ^T
 bind t send-prefix
-
-# Bind appropriate commands similar to screen.
-# lockscreen ^X x
-# unbind ^X
-# bind ^X lock-server
-# unbind x
-# bind x lock-server
 
 # screen ^C c
 unbind ^C
@@ -95,10 +74,6 @@ unbind ^W
 bind ^W list-windows
 unbind w
 bind w list-windows
-
-# quit \
-unbind \
-bind \ confirm-before "kill-server"
 
 # kill K k
 unbind K
