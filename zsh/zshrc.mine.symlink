@@ -138,7 +138,7 @@ command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 export EDITOR=vim
 
 # Haskell
-source $HOME/.ghcup/env
+[ -f $HOME/.ghcup/env ] && source $HOME/.ghcup/env
 export PATH=$HOME/.local/bin:/opt/ghc/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Rust
