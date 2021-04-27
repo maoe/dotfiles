@@ -3,9 +3,6 @@ source $HOME/dotfiles/modules/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle git
 antigen bundle pass
-
 antigen bundle zsh-users/zsh-syntax-highlighting
-
-antigen theme kphoen
-
+# antigen theme kphoen
 antigen apply

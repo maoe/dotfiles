@@ -134,11 +134,6 @@ kterm*|xterm*|screen*)
   ;;
 esac
 
-## load user .zshrc configuration file
-#
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
-[ -f ~/.zshrc.private ] && source ~/.zshrc.private || true
-
 zsh_syntax_highlighting=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f "$zsh_syntax_highlighting" ] && source "$zsh_syntax_highlighting"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
@@ -148,3 +143,10 @@ export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 # OPAM configuration
 . /Users/maoe/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 # export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+## load user .zshrc configuration file
+#
+[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+[ -f ~/.zshrc.private ] && source ~/.zshrc.private || true
+
+eval "$(starship init zsh)"
