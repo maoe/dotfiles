@@ -2,3 +2,5 @@
 [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 
 prepath $HOME/.local/bin
+
+alias open='xdg-open &>/dev/null'

@@ -39,7 +39,7 @@ setopt interactivecomments
 
 ## Keybind configuration
 #
-# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes 
+# emacs like keybind (e.x. Ctrl-a goes to head of a line and Ctrl-e goes
 # to end of it)
 #
 bindkey -e
@@ -149,4 +149,13 @@ export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 [ -f ~/.zshrc.private ] && source ~/.zshrc.private || true
 
-eval "$(starship init zsh)"
+if command -v starship > /dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+# added by Nix installer
+if [ -e /home/maoe/.nix-profile/etc/profile.d/nix.sh ]; then
+  . /home/maoe/.nix-profile/etc/profile.d/nix.sh;
+fi
+
+[ -f "/home/maoe/.ghcup/env" ] && source "/home/maoe/.ghcup/env" # ghcup-env
