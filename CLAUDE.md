@@ -15,7 +15,7 @@ stow -D zsh                   # Unstow (remove symlinks for) a package
 bin/setup-dotfiles <host>     # Install dotfiles on a remote host via SSH
 ```
 
-Prerequisites: `git`, `stow`.
+Prerequisites: `git`, `stow`, `sheldon`, `fzf`, `zoxide`.
 
 ## Stow Convention
 
@@ -34,10 +34,10 @@ To add a new dotfile: place it at `<topic>/.<name>` and run `stow <topic>`.
 **Zsh loading order:**
 1. `~/.zprofile` (login shell env)
 2. `~/.zshrc` (main shell config, completions, aliases)
-3. `~/.zshrc.mine` → sources `~/.zshrc.antigen` → platform file (`~/.zshrc.mac` or `~/.zshrc.linux`)
+3. `~/.zshrc.mine` → sources `~/.zshrc.antigen` (sheldon plugins) → platform file (`~/.zshrc.mac` or `~/.zshrc.linux`)
 4. `~/.zshrc.private` (not tracked — personal overrides)
 
-**Git submodules** in `modules/`: antigen (zsh plugin manager), git-flow-completion.
+**Zsh plugin manager**: [sheldon](https://github.com/rossmacarthur/sheldon) — config at `~/.config/sheldon/plugins.toml` (stowed from `zsh/.config/sheldon/`).
 
 **Private/local config** (not tracked in this repo):
 - `~/.gitconfig.private` — included via git's `[include]` directive
