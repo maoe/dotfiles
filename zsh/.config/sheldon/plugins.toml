@@ -1,0 +1,14 @@
+shell = "zsh"
+
+[plugins.ohmyzsh-git]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/git"
+use = ["{{ name }}.plugin.zsh"]
+
+[plugins.ohmyzsh-pass]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/pass"
+use = ["{{ name }}.plugin.zsh"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
