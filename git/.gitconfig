@@ -27,17 +27,16 @@
 	enabled = true
 [core]
 	excludesfile = ~/.gitignore
-[pager]
-    log = "if $(type -p diff-highlight >/dev/null 2>&1); then diff-highlight | less; else less; fi"
-    show = "if $(type -p diff-highlight >/dev/null 2>&1); then diff-highlight | less; else less; fi"
-    diff = "if $(type -p diff-highlight >/dev/null 2>&1); then diff-highlight | less; else less; fi"
+	pager = delta
 [diff]
     tool = meld
     algorithm = histogram
     compactionHeuristic = true
 [interactive]
 	singlekey = true
-    diffFilter = (diff-highlight 2>/dev/null || cat)
+	diffFilter = delta --color-only
+[merge]
+    conflictStyle = zdiff3
 [url "git://github.com/ghc/packages-"]
 	insteadOf = git://github.com/ghc/packages/
 [url "http://github.com/ghc/packages-"]
@@ -61,3 +60,8 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[delta]
+    navigate = true
+    dark = true
+    hyperlinks = true
+    hyperlinks-file-link-format = "vscode://file/{path}:{line}"

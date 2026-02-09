@@ -1,18 +1,18 @@
 #!/bin/sh
-DOTFILES_DIR=$(ssh $@ 'echo $HOME')
+DOTFILES_DIR=$(ssh $@ 'echo $HOME/dotfiles')
 echo "DOTFILES_DIR=$DOTFILES_DIR"
 
 ssh $@ <<EOF
-type git || echo "You need git to proceed"
-type rake || echo "You need rake to proceed"
+type git || { echo "You need git to proceed"; exit 1; }
+type stow || { echo "You need stow to proceed"; exit 1; }
 
 if [ -d "$DOTFILES_DIR" ]; then
   cd $DOTFILES_DIR
   git pull
-  git submodule update -i
+  git submodule update --init
 else
   git clone --recursive https://github.com/maoe/dotfiles.git $DOTFILES_DIR
 fi
 cd $DOTFILES_DIR
-yes o | rake install
+./install.sh
 EOF

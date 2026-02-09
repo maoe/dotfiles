@@ -1,0 +1,12 @@
+\.#.+
+.+~
+\.git
+CVS
+RCS
+_darcs
+\.svn
+\.cvsignore
+\.hg
+\.gitmodules
+\#.*\#
+.+,v

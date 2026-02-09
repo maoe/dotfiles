@@ -166,4 +166,5 @@ if [ -e /home/maoe/.nix-profile/etc/profile.d/nix.sh ]; then
   . /home/maoe/.nix-profile/etc/profile.d/nix.sh;
 fi
 
-[ -f "/home/maoe/.ghcup/env" ] && source "/home/maoe/.ghcup/env" # ghcup-env
+
+[ -f "/home/maoe/.ghcup/env" ] && . "/home/maoe/.ghcup/env" # ghcup-env

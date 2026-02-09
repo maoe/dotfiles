@@ -6,7 +6,7 @@ if [ -z $DOTFILES ]; then
   git pull origin master
   [[ $? -eq 0 ]] && clear
   echo "Updating dotfiles submodules"
-  git submodule update -i
+  git submodule update --init
   [[ $? -eq 0 ]] && clear
   touch .touch
   popd >/dev/null
