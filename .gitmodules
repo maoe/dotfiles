@@ -1,6 +1,0 @@
-[submodule "modules/git-flow-completion"]
-	path = modules/git-flow-completion
-	url = https://github.com/bobthecow/git-flow-completion.git
-[submodule "modules/antigen"]
-	path = modules/antigen
-	url = https://github.com/zsh-users/antigen.git
