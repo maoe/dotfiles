@@ -13,17 +13,7 @@ if [ -z $DOTFILES ]; then
 fi
 unset DOTFILES
 
-# Keep git-completion.zsh up-to-date within 60 days old
-GIT_COMPLETION=$(find ~/.git-completion.zsh -mtime -60 2>/dev/null)
-if [ -z $GIT_COMPLETION ]; then
-  echo "Updating git-completion"
-  curl "https://raw.github.com/zsh-users/zsh/master/Completion/Unix/Command/_git" > ~/.git-completion.zsh 2>/dev/null
-  [[ $? -eq 0 ]] && clear
-fi
-unset GIT_COMPLETION
-
 [[ -f ~/.git-completion.zsh ]] && source ~/.git-completion.zsh
-[[ -f ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh ]] && source ~/dotfiles/modules/git-flow-completion/git-flow-completion.zsh
 
 prepath() {
     if [ ! -d "$1" ]; then
@@ -66,14 +56,6 @@ preghc() {
     prepath $binpath
 }
 
-# aliases
-alias dstat-full='dstat -Tclmdrn'
-alias dstat-mem='dstat -Tclm'
-alias dstat-cpu='dstat -Tclr'
-alias dstat-net='dstat -Tclnd'
-alias dstat-disk='dstat -Tcldr'
-alias knife='nocorrect knife'
-
 source $HOME/.zshrc.antigen
 
 case "${OSTYPE}" in
@@ -85,33 +67,22 @@ linux*)
   ;;
 esac
 
-function exists { which $1 &> /dev/null }
+# fzf
+if command -v fzf > /dev/null; then
+  source <(fzf --zsh)  # provides Ctrl-R history and Ctrl-T file finder
 
-# zsh history search using peco
-if exists peco; then
-    function peco_select_history() {
-        local tac
-        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(\history -n 1 | eval $tac | peco --query "$LBUFFER")
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
+  if command -v ghq > /dev/null; then
+    function fzf_ghq_look() {
+      local selected_dir=$(ghq list -p | fzf --query "$LBUFFER")
+      if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+      fi
+      zle clear-screen
     }
-
-    zle -N peco_select_history
-    bindkey '^R' peco_select_history
-
-    if exists ghq; then
-        function peco_ghq_look() {
-            local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
-            if [ -n "$selected_dir" ]; then
-                BUFFER="cd ${selected_dir}"
-                zle accept-line
-            fi
-            zle clear-screen
-        }
-        zle -N peco_ghq_look
-        bindkey '^G^L' peco_ghq_look
-    fi
+    zle -N fzf_ghq_look
+    bindkey '^G^L' fzf_ghq_look
+  fi
 fi
 
 export GOPATH=$HOME/.go
@@ -126,19 +97,12 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 export GPG_TTY=$(tty)
 
-# added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
 # direnv
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
-# autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+# zoxide
+command -v zoxide > /dev/null && eval "$(zoxide init zsh)"
 
-export EDITOR=vim
-
-# Haskell
-[ -f $HOME/.ghcup/env ] && source $HOME/.ghcup/env
 export PATH=$HOME/.local/bin:/opt/ghc/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Rust

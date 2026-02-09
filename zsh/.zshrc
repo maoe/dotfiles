@@ -110,26 +110,12 @@ case "${TERM}" in
 xterm)
   export TERM=xterm-color
   ;;
-kterm)
-  export TERM=kterm-color
-  # set BackSpace control character
-  stty erase
-  ;;
-cons25)
-  unset LANG
-  export LSCOLORS=ExFxCxdxBxegedabagacad
-  export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-  zstyle ':completion:*' list-colors \
-    'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
-  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' \
-      'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-  ;;
 esac
 
 # set terminal title including current directory
 #
 case "${TERM}" in
-kterm*|xterm*|screen*)
+xterm*|screen*)
   precmd() {
     echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
   }
@@ -142,14 +128,12 @@ kterm*|xterm*|screen*)
   ;;
 esac
 
-zsh_syntax_highlighting=/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f "$zsh_syntax_highlighting" ] && source "$zsh_syntax_highlighting"
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 
 # OPAM configuration
-. /Users/maoe/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+[ -f "$HOME/.opam/opam-init/init.zsh" ] && . "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 # export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 ## load user .zshrc configuration file
