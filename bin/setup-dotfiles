@@ -15,4 +15,15 @@ else
 fi
 cd $DOTFILES_DIR
 ./install.sh
+
+# Install starship into ~/.local/bin if not already available
+if type curl > /dev/null 2>&1; then
+  mkdir -p \$HOME/.local/bin
+  if ! command -v starship > /dev/null 2>&1; then
+    echo "Installing starship..."
+    curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir \$HOME/.local/bin -y
+  fi
+else
+  echo "curl not found; skipping starship installation"
+fi
 EOF
