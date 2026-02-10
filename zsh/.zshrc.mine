@@ -70,6 +70,7 @@ esac
 # fzf
 if command -v fzf > /dev/null; then
   source <(fzf --zsh)  # provides Ctrl-R history and Ctrl-T file finder
+  export FZF_DEFAULT_OPTS='--reverse'
 
   if command -v ghq > /dev/null; then
     function fzf_ghq_look() {
