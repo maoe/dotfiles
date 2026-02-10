@@ -1,0 +1,95 @@
+add_newline = false
+
+[character]
+success_symbol = "[%](bold blue)"
+error_symbol = "[%](bold blue)"
+
+[hostname]
+ssh_only = false
+style = "bright-blue"
+
+[username]
+show_always = true
+
+[aws]
+disabled = true
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
+
+[custom]
+
+[custom.tab]
+description = "The current tab in the tab terminal multiplexer"
+command = "tab --starship"
+when = "tab --starship"
+shell = ["sh"]
+format = "[$output]($style) "
+style = "bold blue"
