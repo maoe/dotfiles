@@ -11,5 +11,30 @@ dir = "plugins/pass"
 use = ["_pass"]
 apply = ["fpath"]
 
+[plugins.ohmyzsh-sudo]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/sudo"
+use = ["*.plugin.zsh"]
+
+[plugins.ohmyzsh-systemd]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/systemd"
+use = ["*.plugin.zsh"]
+
+[plugins.ohmyzsh-docker]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/docker"
+use = ["*.plugin.zsh"]
+
+[plugins.ohmyzsh-rsync]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/rsync"
+use = ["*.plugin.zsh"]
+
+[plugins.ohmyzsh-colored-man-pages]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins/colored-man-pages"
+use = ["*.plugin.zsh"]
+
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
