@@ -70,7 +70,7 @@ if [ -d "$HOME/.zfunc" ]; then
   fpath+=~/.zfunc
 fi
 
-if [ -d "$(rustc --print sysroot)/share/zsh/site-functions" ]; then
+if command -v rustc > /dev/null 2>&1 && [ -d "$(rustc --print sysroot)/share/zsh/site-functions" ]; then
   fpath+="$(rustc --print sysroot)/share/zsh/site-functions"
 fi
 
