@@ -1,5 +1,6 @@
 #!/bin/sh
 DOTFILES_DIR=$(ssh $@ 'echo $HOME/dotfiles')
+LOCAL_STARSHIP_VERSION=$(starship --version 2>/dev/null | head -1 || echo "")
 echo "DOTFILES_DIR=$DOTFILES_DIR"
 
 ssh $@ <<EOF
@@ -19,8 +20,9 @@ cd $DOTFILES_DIR
 # Install starship into ~/.local/bin if not already available
 if type curl > /dev/null 2>&1; then
   mkdir -p \$HOME/.local/bin
-  if ! command -v starship > /dev/null 2>&1; then
-    echo "Installing starship..."
+  REMOTE_STARSHIP_VERSION=\$(starship --version 2>/dev/null | head -1 || echo "")
+  if [ "$LOCAL_STARSHIP_VERSION" != "\$REMOTE_STARSHIP_VERSION" ]; then
+    echo "Installing/updating starship..."
     curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir \$HOME/.local/bin -y
   fi
 else
