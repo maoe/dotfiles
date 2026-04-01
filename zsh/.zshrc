@@ -141,7 +141,8 @@ export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 [ -f ~/.zshrc.private ] && source ~/.zshrc.private || true
 
-if command -v starship > /dev/null; then
+autoload -Uz is-at-least
+if command -v starship > /dev/null && is-at-least 5.3; then
   eval "$(starship init zsh)"
 fi
 
