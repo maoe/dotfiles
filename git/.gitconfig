@@ -66,3 +66,5 @@
     dark = true
     hyperlinks = true
     hyperlinks-file-link-format = "vscode://file/{path}:{line}"
+[url "git@github.com:"]
+	insteadOf = https://github.com/
