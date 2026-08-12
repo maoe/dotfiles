@@ -74,6 +74,15 @@ if command -v rustc > /dev/null 2>&1 && [ -d "$(rustc --print sysroot)/share/zsh
   fpath+="$(rustc --print sysroot)/share/zsh/site-functions"
 fi
 
+# Homebrew-installed completions (_gh, _ghq, _pass, _rg, _delta, ...).
+# Must come before compinit, and the prefix differs per arch (/usr/local vs /opt/homebrew).
+if command -v brew > /dev/null 2>&1; then
+  brew_prefix=$(brew --prefix)
+  [ -d "$brew_prefix/share/zsh/site-functions" ] && fpath=("$brew_prefix/share/zsh/site-functions" $fpath)
+  [ -d "$brew_prefix/share/zsh-completions" ] && fpath=("$brew_prefix/share/zsh-completions" $fpath)
+  unset brew_prefix
+fi
+
 autoload -U compinit
 compinit
 
