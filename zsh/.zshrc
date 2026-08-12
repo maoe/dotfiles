@@ -137,6 +137,32 @@ xterm*|screen*)
   ;;
 esac
 
+# Reset terminal modes left enabled by a remote TUI.
+#
+# When an ssh/mosh session dies abruptly (broken pipe, "closed by remote host"),
+# the remote full-screen app never gets to send its cleanup sequences, so the
+# local terminal stays in mouse-reporting mode and floods the shell with
+# \e[<35;...M reports on every mouse move. Disable the modes ourselves on exit:
+# mouse tracking (1000/1002/1003), SGR coordinates (1006), bracketed paste
+# (2004), and force the cursor visible again (25h).
+_reset_terminal_modes() {
+  [[ -t 1 ]] && printf '\e[?1000l\e[?1002l\e[?1003l\e[?1006l\e[?2004l\e[?25h'
+}
+
+ssh() {
+  command ssh "$@"
+  local ret=$?
+  _reset_terminal_modes
+  return $ret
+}
+
+mosh() {
+  command mosh "$@"
+  local ret=$?
+  _reset_terminal_modes
+  return $ret
+}
+
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/opt/gpg-agent/bin:$PATH"
