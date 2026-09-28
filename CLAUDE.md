@@ -29,7 +29,7 @@ To add a new dotfile: place it at `<topic>/.<name>` and run `stow <topic>`.
 
 ## Architecture
 
-**Topic-based layout** — each directory groups configs for one tool/domain (git, zsh, tmux, vim, haskell, ruby, tig, rc, gnome).
+**Topic-based layout** — each directory groups configs for one tool/domain (claude, git, zsh, tmux, vim, haskell, ruby, tig, rc, gnome).
 
 **Zsh loading order:**
 1. `~/.zprofile` (login shell env)
