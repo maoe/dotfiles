@@ -1,11 +1,13 @@
 #!/bin/bash
-# Claude Code status line: directory + git branch + model name + Remote Control + context remaining % + Codex quota + beads task
+# Claude Code status line: directory + git branch + model name + Remote Control + context remaining % + Claude quota + Codex quota + beads task
 input=$(cat)
 
 cwd=$(echo "$input" | jq -r '.workspace.current_dir // .cwd')
 dir_display=$(basename "$cwd")
 model=$(echo "$input" | jq -r '.model.display_name')
 remaining=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
+# Claude quota left, in the same shape as `codex-chat status --line`.
+claude=$(echo "$input" | jq -r '.rate_limits // empty | "claude 5h \(100 - .five_hour.used_percentage)% wk \(100 - .seven_day.used_percentage)%"' 2>/dev/null)
 # Lets the task lookup find the task this session claimed, even while the
 # session sits in the main checkout and the work happens in a worktree.
 session_id=$(echo "$input" | jq -r '.session_id // empty')
@@ -36,6 +38,7 @@ GREEN='\033[2;32m'
 YELLOW='\033[2;33m'
 MAGENTA='\033[2;35m'
 BLUE='\033[2;34m'
+CORAL='\033[2;38;5;173m'
 RESET='\033[0m'
 
 out="${DIM}${dir_display}${RESET}"
@@ -49,6 +52,9 @@ if [ -n "$rc" ]; then
 fi
 if [ -n "$remaining" ]; then
   out="${out} ${DIM}|${RESET} ${YELLOW}${remaining}% left${RESET}"
+fi
+if [ -n "$claude" ]; then
+  out="${out} ${DIM}|${RESET} ${CORAL}${claude}${RESET}"
 fi
 if [ -n "$codex" ]; then
   out="${out} ${DIM}|${RESET} ${BLUE}${codex}${RESET}"
