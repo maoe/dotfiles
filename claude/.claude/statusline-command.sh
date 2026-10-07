@@ -15,7 +15,7 @@ session_name=$(echo "$input" | jq -r '.session_name // empty')
 # live record and nulls it when RC goes away. The statusLine JSON has no field
 # for it (its "remote" is CCR attach, not RC).
 rc=""
-[ -n "$session_id" ] && rc=$(jq -r --arg s "$session_id" 'select(.sessionId == $s and ((.bridgeSessionId // "") != "")) | "1"' "$HOME"/.claude/sessions/*.json 2>/dev/null | head -n1)
+[ -n "$session_id" ] && rc=$(jq -r --arg s "$session_id" 'select(.sessionId == $s and ((.bridgeSessionId // "") != "")) | .bridgeSessionId' "$HOME"/.claude/sessions/*.json 2>/dev/null | head -n1)
 
 branch=""
 if git -C "$cwd" --no-optional-locks rev-parse --is-inside-work-tree > /dev/null 2>&1; then
@@ -44,7 +44,8 @@ if [ -n "$branch" ]; then
 fi
 out="${out} ${DIM}|${RESET} ${CYAN}${model}${RESET}"
 if [ -n "$rc" ]; then
-  out="${out} ${DIM}|${RESET} ${CYAN}⇄${RESET}"
+  # OSC 8 link to the session on claude.ai, so a click opens it in the app/browser.
+  out="${out} ${DIM}|${RESET} \033]8;;https://claude.ai/code/${rc}\a${CYAN}⇄${RESET}\033]8;;\a"
 fi
 if [ -n "$remaining" ]; then
   out="${out} ${DIM}|${RESET} ${YELLOW}${remaining}% left${RESET}"
