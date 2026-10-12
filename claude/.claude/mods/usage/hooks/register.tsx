@@ -71,6 +71,9 @@ export const register: Register = on => {
 
   on('session.start', async ($, e, next) => {
     const result = await next(e)
+    // Nothing is shown in a terminal session, so poll nothing. Its readings
+    // still go to $.store below, for the desktop sessions to show.
+    if (!(await inApp($))) return result
     void refresh($, f)
     cancel?.()
     cancel = $.clock.every(REFRESH_MS, () => void refresh($, f)).cancel

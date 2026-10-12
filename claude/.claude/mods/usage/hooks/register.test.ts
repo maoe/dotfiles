@@ -3,18 +3,20 @@ import type { On, RenderSurface } from 'claude-code'
 import type { Engine } from 'claude-code/testing'
 
 // The clock, $.store (what other sessions wrote), codex-chat's line and the
-// surfaces the session draws on. Returns the status lines the mod pinned.
+// surfaces the session draws on. Returns the status lines the mod pinned and
+// how many times it ran codex-chat.
 function host(on: On, store: Map<string, unknown>, codex = '', surfaces: RenderSurface[] = ['desktop']) {
   const clock = mock.clock(on)
   const pinned: (string | undefined)[] = []
+  const runs = { codex: 0 }
   on('store.get', async (_$, e) => ({ value: store.get(e.key) }) as never)
   on('store.set', async (_$, e) => (store.set(e.key, e.value), { value: undefined }) as never)
-  on('process.run', async () => ({ value: { exitCode: codex ? 0 : 1, stdout: codex, stderr: '' } }) as never)
+  on('process.run', async () => (runs.codex++, { value: { exitCode: codex ? 0 : 1, stdout: codex, stderr: '' } }) as never)
   on('session.surfaces', async () => ({ value: surfaces }) as never)
   on('ui.status', async (_$, e) => (pinned.push(e.text), { value: undefined }) as never)
   on('session.start', async (_$, e) => ({ cwd: e.cwd }) as never)
   on('session.measure', async (_$, e) => ({ changed: e.changed }) as never)
-  return { clock, pinned }
+  return { clock, pinned, runs }
 }
 
 // refresh runs unawaited from session.start and the timer, through several
@@ -78,9 +80,14 @@ test('desktop: clears the line without any figure', async ($, on) => {
   expect(pinned.at(-1)).toBeUndefined()
 })
 
-test('terminal: leaves the figures to the status line', async ($, on) => {
-  const { pinned } = host(on, new Map(), 'codex 5h 100% wk 81%', ['terminal'])
+test('terminal: leaves the figures to the status line, but stores its readings', async ($, on) => {
+  const store = new Map<string, unknown>()
+  const { clock, pinned, runs } = host(on, store, 'codex 5h 100% wk 81%', ['terminal'])
   await start($)
   await measure($, 23.4, 40)
+  await clock.advance(60_000)
+  await settle()
   expect(pinned).toEqual([])
+  expect(runs.codex).toBe(0)
+  expect(store.get('claude')).toMatchObject({ fiveHour: 77, week: 60 })
 })
