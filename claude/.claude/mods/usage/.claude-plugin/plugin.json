@@ -1,0 +1,6 @@
+{
+  "name": "usage",
+  "version": "0.1.0",
+  "description": "Show Claude and Codex quota left under the prompt in the desktop app",
+  "author": { "name": "maoe" }
+}
