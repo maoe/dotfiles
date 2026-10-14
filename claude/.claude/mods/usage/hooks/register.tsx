@@ -65,22 +65,37 @@ async function refresh($: EngineInterface, f: Figures) {
   await show($, f)
 }
 
+// The refresh timer, once started.
+type Timer = { cancel?: () => void }
+
+// Nothing is shown in a terminal session, so poll nothing there. The desktop
+// app joins the roster after session.start, and a reloaded module sees no
+// session.start at all, so every hook that may first find it tries again.
+async function poll($: EngineInterface, f: Figures, timer: Timer) {
+  if (timer.cancel || !(await inApp($)) || timer.cancel) return
+  timer.cancel = $.clock.every(REFRESH_MS, () => void refresh($, f)).cancel
+  void refresh($, f)
+}
+
 export const register: Register = on => {
   const f: Figures = { claude: null, codex: null }
-  let cancel: (() => void) | undefined
+  const timer: Timer = {}
 
   on('session.start', async ($, e, next) => {
     const result = await next(e)
-    // Nothing is shown in a terminal session, so poll nothing. Its readings
-    // still go to $.store below, for the desktop sessions to show.
-    if (!(await inApp($))) return result
-    void refresh($, f)
-    cancel?.()
-    cancel = $.clock.every(REFRESH_MS, () => void refresh($, f)).cancel
+    await poll($, f, timer)
+    return result
+  })
+
+  on('session.attach', async ($, e, next) => {
+    const result = await next(e)
+    await poll($, f, timer)
     return result
   })
 
   on('session.measure', async ($, e, next) => {
+    // A terminal session's readings still go to $.store, for the desktop
+    // sessions to show.
     if (e.changed.includes('rateLimits') && e.rateLimits.length > 0) {
       f.claude = {
         fiveHour: left(e.rateLimits, 'five_hour'),
@@ -90,6 +105,7 @@ export const register: Register = on => {
       await $.store.set('claude', f.claude)
       await show($, f)
     }
+    await poll($, f, timer)
     return next(e)
   })
 }

@@ -16,6 +16,7 @@ function host(on: On, store: Map<string, unknown>, codex = '', surfaces: RenderS
   on('ui.status', async (_$, e) => (pinned.push(e.text), { value: undefined }) as never)
   on('session.start', async (_$, e) => ({ cwd: e.cwd }) as never)
   on('session.measure', async (_$, e) => ({ changed: e.changed }) as never)
+  on('session.attach', async (_$, e) => ({ clientId: e.clientId }) as never)
   return { clock, pinned, runs }
 }
 
@@ -78,6 +79,24 @@ test('desktop: clears the line without any figure', async ($, on) => {
   const { pinned } = host(on, new Map())
   await start($)
   expect(pinned.at(-1)).toBeUndefined()
+})
+
+test('desktop: starts polling Codex when the app attaches after the start', async ($, on) => {
+  const surfaces: RenderSurface[] = []
+  const { pinned } = host(on, new Map(), 'codex 5h 100% wk 81%', surfaces)
+  await start($)
+  surfaces.push('desktop')
+  await $.session.attach({ surface: 'desktop', clientId: 'desktop:default' } as never)
+  await settle()
+  expect(pinned.at(-1)).toBe('codex 5h 100% wk 81%')
+})
+
+test('desktop: starts polling Codex on a reading when it missed the start', async ($, on) => {
+  const { pinned, runs } = host(on, new Map(), 'codex 5h 100% wk 81%')
+  await measure($, 23.4, 40)
+  await measure($, 23.4, 40)
+  expect(pinned.at(-1)).toBe('claude 5h 77% wk 60% | codex 5h 100% wk 81%')
+  expect(runs.codex).toBe(1)
 })
 
 test('terminal: leaves the figures to the status line, but stores its readings', async ($, on) => {
